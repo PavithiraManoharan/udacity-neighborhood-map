@@ -10,12 +10,15 @@ class App extends Component {
 
   componentDidMount() {
     this.getVenues()
-    this.renderMap()
   }
 
   renderMap = () => {
     loadScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyABkyhI9EIbhjjP5D-mQTQo-4l-9h34Nm4&callback=initMap")
     window.initMap = this.initMap
+  }
+
+  handleFailLoadMap = () => {
+    document.getElementById("errorDisplay").style.display = "block"
   }
 
   getVenues = () => {
@@ -27,7 +30,6 @@ class App extends Component {
       section: "museum",
       categoryId: "4bf58dd8d48988d181941735",
       near:"Hafencity",
-      radius: "2000",
       v: "20180323"
     }
 
@@ -35,10 +37,12 @@ class App extends Component {
       .then(res => {
         this.setState({
           venues: res.data.response.groups[0].items
-        })
+        }, this.renderMap())
       })
       .catch(error => {
-        console.log("Oops! Some error occurred while fetching the Venues from the API " + error)
+        this.setState({
+          venues: []
+        }, this.handleFailLoadMap())
       })
   } 
 
@@ -47,12 +51,22 @@ class App extends Component {
       center: {lat: 53.55, lng: 10},
       zoom: 14
     });
+
+    this.state.venues && this.state.venues.map(currentPlace => {
+      var marker = new window.google.maps.Marker({
+        position: {lat: currentPlace.venue.location.lat, lng: currentPlace.venue.location.lng},
+        map: map,
+        title: currentPlace.venue.name
+      })
+      return marker
+    })
   }
 
   render() {
     return (
       <main>
         <div id="map"></div>
+        <div id="errorDisplay" style={{display: "none"}}>Hey sorry there was an error</div>
       </main>
     );
   }
