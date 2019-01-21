@@ -12,8 +12,22 @@ class App extends Component {
     this.getVenues()
   }
 
+  /**
+ * Create a function called loadScript to simulate adding a script tag in the index.html page
+ * <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"
+    async defer></script>
+ */
+  loadScript = (url) => {
+    let index = window.document.getElementsByTagName("script")[0]
+    let script = window.document.createElement("script")
+    script.src = url
+    script.async = true
+    script.defer = true
+    index.parentNode.insertBefore(script, index)
+  }
+
   renderMap = () => {
-    loadScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyABkyhI9EIbhjjP5D-mQTQo-4l-9h34Nm4&callback=initMap")
+    this.loadScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyABkyhI9EIbhjjP5D-mQTQo-4l-9h34Nm4&callback=initMap")
     window.initMap = this.initMap
   }
 
@@ -29,7 +43,7 @@ class App extends Component {
       query: "poi",
       section: "museum",
       categoryId: "4bf58dd8d48988d181941735",
-      near:"Hafencity",
+      ll:"53.55,10",
       v: "20180323"
     }
 
@@ -61,22 +75,20 @@ class App extends Component {
     return markerImage;
   }
 
-  initMap = () => {
-    const map = new window.google.maps.Map(document.getElementById('map'), {
-      center: {lat: 53.55, lng: 10},
-      zoom: 14,
-    });
+  //Create an Infowindow
+  createInfoWindow = () => {
+    let infowindow = new window.google.maps.InfoWindow()
+    return infowindow
+  }
 
+  //Style default markers, add content and useful animations
+  addMarkers = (map, infowindow) => {
     // Style the markers a bit. This will be our listing marker icon.
-    var defaultIcon = this.makeMarkerIcon('ff0000');
-
+    const defaultIcon = this.makeMarkerIcon('ff0000');
     // Create a "highlighted location" marker color for when the user
     // mouses over the marker.
-    var highlightedIcon = this.makeMarkerIcon('0091ff');
+    const highlightedIcon = this.makeMarkerIcon('0091ff');
 
-    //Create an Infowindow
-    let infowindow = new window.google.maps.InfoWindow()
-    
     // Display dynamic markers
     this.state.venues && this.state.venues.map(currentPlace => {
       let contentString = `
@@ -94,6 +106,7 @@ class App extends Component {
         title: currentPlace.venue.name
       })
 
+      //Set default styled icon for the markers
       marker.setIcon(defaultIcon)
       
       marker.addListener('click', function() {
@@ -101,6 +114,7 @@ class App extends Component {
         infowindow.setContent(contentString)
         //Open it
         infowindow.open(map, marker);
+        //Add bounce effect on click
         if (marker.getAnimation() !== null) {
           marker.setAnimation(null);
         } else {
@@ -122,6 +136,26 @@ class App extends Component {
     }) 
   }
 
+  //Display a map with markers and their infowindows
+  initMap = () => {
+    const map = new window.google.maps.Map(document.getElementById('map'), {
+      center: {lat: 53.55, lng: 10},
+      zoom: 14,
+    });
+    map.setOptions({styles: this.styles['hide']});
+    const infowindow = this.createInfoWindow()
+    this.addMarkers(map, infowindow)
+  }
+
+  styles = {
+    hide: [
+      {
+        featureType: 'poi',
+        stylers: [{visibility: 'off'}]
+      }
+    ]
+  };
+
   render() {
     return (
       <main>
@@ -131,20 +165,5 @@ class App extends Component {
     );
   }
 }
-
-/**
- * Create a function called loadScript to simulate adding a script tag in the index.html page
- * <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"
-    async defer></script>
- */
-
- function loadScript(url) {
-    let index = window.document.getElementsByTagName("script")[0]
-    let script = window.document.createElement("script")
-    script.src = url
-    script.async = true
-    script.defer = true
-    index.parentNode.insertBefore(script, index)
- }
  
 export default App;
