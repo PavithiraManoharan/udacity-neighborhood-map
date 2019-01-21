@@ -25,7 +25,7 @@ class App extends Component {
     const api = "https://api.foursquare.com/v2/venues/explore?"
     const parameters = {
       client_id: "I35VHQNE1A5YIW0SCEGXNVAQ4UOVGEORZV5X5V2ABI4PUSCF",
-      client_secret: "TS53QTLYEOVAGUZUPF4EEFZGCMGUZLVJ2G4OPMPWMP5UDPQB",
+      client_secret:   "TS53QTLYEOVAGUZUPF4EEFZGCMGUZLVJ2G4OPMPWMP5UDPQB",
       query: "museum",
       section: "museum",
       categoryId: "4bf58dd8d48988d181941735",
@@ -52,12 +52,27 @@ class App extends Component {
       zoom: 14
     });
 
+    //Create an Infowindow
+    let infowindow = new window.google.maps.InfoWindow()
+    
+    // Display dynamic markers
     this.state.venues && this.state.venues.map(currentPlace => {
-      var marker = new window.google.maps.Marker({
+      let contentString = `${currentPlace.venue.name}`
+     
+      //Create a marker
+      let marker = new window.google.maps.Marker({
         position: {lat: currentPlace.venue.location.lat, lng: currentPlace.venue.location.lng},
         map: map,
         title: currentPlace.venue.name
       })
+      
+      marker.addListener('click', function() {
+        //Set content of the infowindow
+        infowindow.setContent(contentString)
+        //Open it
+        infowindow.open(map, marker);
+      });
+
       return marker
     })
   }
