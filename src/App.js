@@ -1,6 +1,8 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from 'react'
+import './App.css'
 import axios from 'axios'
+import Header from './Header'
+import FilterSection from './FilterSection'
 
 class App extends Component {
 
@@ -10,7 +12,9 @@ class App extends Component {
 
   componentDidMount() {
     this.getVenues()
+    this.markers = []
   }
+
 
   /**
  * Create a function called loadScript to simulate adding a script tag in the index.html page
@@ -102,6 +106,8 @@ class App extends Component {
       let marker = new window.google.maps.Marker({
         position: {lat: currentPlace.venue.location.lat, lng: currentPlace.venue.location.lng},
         map: map,
+        id: currentPlace.venue.id,
+        name: currentPlace.venue.name,
         animation: window.google.maps.Animation.DROP,
         title: currentPlace.venue.name
       })
@@ -131,9 +137,9 @@ class App extends Component {
       marker.addListener('mouseout', function() {
         this.setIcon(defaultIcon);
       });
-
+      this.markers.push(marker)
       return marker
-    }) 
+    })
   }
 
   //Display a map with markers and their infowindows
@@ -158,10 +164,16 @@ class App extends Component {
 
   render() {
     return (
-      <main>
-        <div id="map"></div>
-        <div id="errorDisplay" style={{display: "none"}}>Hey sorry there was an error</div>
-      </main>
+      <div className="application">
+        <header>
+          <Header/>
+        </header>
+        <FilterSection markers={this.markers} venues={this.state.venues} />
+        <main>
+          <div id="map"></div>
+          <div id="errorDisplay" style={{display: "none"}}>Hey sorry there was an error</div>
+        </main>
+      </div>
     );
   }
 }
