@@ -3,32 +3,117 @@
   height: 40vmin;
 }
 
-.App-header {
-  background-color: #462525ce;
+header {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: #462525;
   font-size: calc(10px + 2vmin);
   color: white;
   height: 20vh;
+  transition: margin-left 0.3s;
 }
 
-.App-link {
-  color: #61dafb;
+main {
+  transition: margin-left 0.3s;
 }
 
-.sidebar {
+
+header #sidebar-menu-icon {
+  width: 10%;
+  text-align: center;
+  margin: 0;
+  font-size: 1.5em;
+  border: 0;
+  background: none;
+  color: #fff;
+}
+
+header .main-heading {
+  width: 90%;
+  text-align: center;
+}
+
+header .main-heading h1 {
+  margin: 0;
+}
+
+#sidebar-menu-icon:hover, #close-sidebar-menu:hover {
+  cursor: pointer;
+}
+
+#canvas-menu {
+  height: 100%;
+  width: 0;
   position: fixed;
+  z-index: 1;
   top: 0;
   left: 0;
-  width: 325px;
-  max-width: 100vw;
-  height: 100%;
-  max-height: 100vh;
-  z-index: 10;
   background-color: #eeedeb;
+  overflow-x: hidden;
+  transition: 0.3s;
 }
+
+#canvas-menu.closed {
+  width: 0;
+  visibility: hidden;
+}
+
+#canvas-menu.open {
+ width: 305px;
+ visibility: visible; /* For accessibility */
+ padding: 15px 10px;
+
+}
+
+#filter {
+  width: 79%;
+  height: 25px;
+  margin: 0;
+}
+
+#close-sidebar-menu {
+  float: right;
+  background: 0;
+  border: 0;
+  text-align: right;
+  padding: 7px 5px;
+  font-size: 1em;
+}
+
+.listPlaces {
+  display: block;
+  list-style-type: none;
+  padding: 0;
+}
+
+.listPlaces li {
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.listPlaces li button {
+  background: 0;
+  border: 0;
+  text-align: left;
+  font-size: 1em;
+}
+
+.listPlaces li button:hover {
+  cursor: pointer;
+  color: #ff0000; 
+}
+
+
+#appHeader.closed, #appMain.closed {
+  margin-left: 0;
+  transition: margin-left 0.3s ease;
+}
+
+#appHeader.open, #appMain.open {
+  margin-left: 325px;
+}
+
 
 /* Always set the map height explicitly to define the size of the div
   * element that contains the map. */

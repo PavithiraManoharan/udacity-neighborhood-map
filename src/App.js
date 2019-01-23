@@ -1,20 +1,19 @@
 import React, { Component } from 'react'
 import './App.css'
 import axios from 'axios'
-import Header from './Header'
 import FilterSection from './FilterSection'
 
 class App extends Component {
 
   state = {
-    venues: []
+    venues: [],
+    isSidebarOpen: false
   }
 
   componentDidMount() {
     this.markers = []
     this.getVenues()
   }
-
 
   /**
  * Create a function called loadScript to simulate adding a script tag in the index.html page
@@ -102,6 +101,7 @@ class App extends Component {
         return ` ${addressLine}`
       })}</p>
       <p><strong>Category: </strong>${currentPlace.venue.categories[0].name}</p>
+      <p><em>*All Info provided by FourSquare API*</em></p>
       `
       //Create a marker
       let marker = new window.google.maps.Marker({
@@ -163,18 +163,34 @@ class App extends Component {
     ]
   };
 
+  toggleSidebar = () => {
+    //Toggle the values of the sidebar's open or not values
+    this.setState({ isSidebarOpen: !this.state.isSidebarOpen })
+    if(this.state.isSidebarOpen) {
+      document.getElementById('canvas-menu').setAttribute("aria-expanded", true)
+    } else {
+      document.getElementById('canvas-menu').setAttribute("aria-expanded", false)
+    }
+  }
+
   render() {
     return (
       <div className="application">
-        <header>
-          <Header/>
+        <header id="appHeader" className={this.state.isSidebarOpen ? "open" : "closed"}>
+          <button id="sidebar-menu-icon" onClick={this.toggleSidebar} aria-label="Open Menu">
+              <i className="fas fa-bars"></i>
+          </button>
+          <div className="main-heading">
+            <h1>Museums in Hafencity - Hamburg</h1>
+          </div>
         </header>
         {
-          this.state.venues && this.state.venues.length > 0 && <FilterSection markers={this.markers} venues={this.state.venues} />
+          this.state.venues && this.state.venues.length > 0 && 
+          <FilterSection isSidebarOpen={this.state.isSidebarOpen} toggleSidebar={this.toggleSidebar} markers={this.markers} venues={this.state.venues} />
         }
-        <main>
-          <div id="map"></div>
+        <main id="appMain" className={this.state.isSidebarOpen ? "open":"closed"}>
           <div id="errorDisplay" style={{display: "none"}}>Sorry, Google Maps was unable to load at this time :(</div>
+          <div id="map" role="application" aria-label="map"></div>
         </main>
       </div>
     );
