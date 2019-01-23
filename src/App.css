@@ -8,7 +8,7 @@ header {
   align-items: center;
   justify-content: center;
   background-color: #462525;
-  font-size: calc(10px + 2vmin);
+  font-size: 1.25em;
   color: white;
   height: 20vh;
   transition: margin-left 0.3s;
@@ -63,7 +63,6 @@ header .main-heading h1 {
  width: 305px;
  visibility: visible; /* For accessibility */
  padding: 15px 10px;
-
 }
 
 #filter {
@@ -135,4 +134,45 @@ html, body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 768px) {
+  header {
+    font-size: 0.6em;
+    height: 10vh;
+    width: 100vw;
+  }
+
+  #appHeader.closed, #appMain.closed {
+    transition: all 0.3s ease;
+  }
+
+  #appHeader.open, #appMain.open {
+    margin-left: 0;
+    transition: all 0.3s ease;
+  }
+
+  #appMain.open #map{
+    height: 57vh;
+    top: 33vh;
+    transition: all 0.3s ease;
+  }
+
+  #canvas-menu.closed {
+    width: 100vw;
+    height: 0;
+  }
+
+  #map {
+    height: 90vh;
+  }
+
+  #canvas-menu.open {
+    width: 100vw;
+    top: 10vh;
+    height: 30vh;
+    transition: all 0.3s ease;
+  }
+
 }

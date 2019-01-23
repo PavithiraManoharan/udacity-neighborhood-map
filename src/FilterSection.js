@@ -37,7 +37,7 @@ class FilterSection extends Component {
         return( 
             <nav id="canvas-menu" className={"sidebar " + (this.props.isSidebarOpen ? 'open' : 'closed')}>
                 <input name="Filter venues" id="filter" type="text" placeholder="Filter places" value= {this.state.query} onChange={(e) => { this.filterVenues(e.target.value) }}/>
-                <button id="close-sidebar-menu" onClick={this.props.toggleSidebar} name="Close Menu"><i class="fas fa-times"></i></button    >
+                <button id="close-sidebar-menu" onClick={this.props.toggleSidebar} name="Close Menu"><i className="fas fa-times"></i></button    >
                 <ul className="listPlaces">
                     {this.state.filteredVenues && (this.state.filteredVenues).map((currentLocation, index) =>
                         <li key={index} onClick={() => {this.highlightMarker(currentLocation)}}>

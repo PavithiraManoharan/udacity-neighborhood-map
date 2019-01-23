@@ -81,7 +81,9 @@ class App extends Component {
 
   //Create an Infowindow
   createInfoWindow = () => {
-    let infowindow = new window.google.maps.InfoWindow()
+    let infowindow = new window.google.maps.InfoWindow({
+      maxWidth: 250
+    })
     return infowindow
   }
 
