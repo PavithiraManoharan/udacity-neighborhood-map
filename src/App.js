@@ -10,6 +10,9 @@ class App extends Component {
     isSidebarOpen: false
   }
 
+  /**
+   * assigning markers array and getting Venues from FourSquare API after the component has been mounted
+   */
   componentDidMount() {
     this.markers = []
     this.getVenues()
@@ -29,11 +32,17 @@ class App extends Component {
     index.parentNode.insertBefore(script, index)
   }
 
+  /**
+   * Render Google Maps
+   */
   renderMap = () => {
     this.loadScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyABkyhI9EIbhjjP5D-mQTQo-4l-9h34Nm4&callback=initMap")
     window.initMap = this.initMap
   }
 
+  /**
+   * Fallback method if Google Maps was not able to load
+   */
   handleFailLoadMap = () => {
     document.getElementById("errorDisplay").style.display = "block"
   }

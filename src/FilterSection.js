@@ -11,15 +11,24 @@ class FilterSection extends Component {
         }
     }
 
+    /**
+     * Adding the list of venues received as props in a new state for filter functions
+     */
     componentDidMount() {
         this.setState({filteredVenues: this.props.venues})
     }
 
+    /**
+     * Triggering click on the marker after finding the one which matches the given venue
+     */
     highlightMarker = (currentLocation) => {
         let marker = this.props.markers.filter(m => m.id === currentLocation.venue.id)[0]
         window.google.maps.event.trigger(marker, 'click')
     }
 
+    /**
+     * Filter Venues from props based on the value entered in the input field
+     */
     filterVenues = (query) => {
         let filteredVenues = (this.props.venues).filter(eachPlace => eachPlace.venue.name.toLowerCase().includes(query.toLowerCase()))
         this.props.markers.forEach(marker => {
@@ -35,7 +44,6 @@ class FilterSection extends Component {
         return(
             <nav id="canvas-menu" className={"sidebar " + (this.props.isSidebarOpen ? 'open' : 'closed')}>
                 <input name="Filter venues" id="filter" type="text" placeholder="Filter places" value= {this.state.query} onChange={(e) => { this.filterVenues(e.target.value) }}/>
-                <button id="close-sidebar-menu" title="Close Menu" onClick={this.props.toggleSidebar} name="Close Menu"><i className="fas fa-times"></i></button    >
                 <ul className="listPlaces">
                     {this.state.filteredVenues && (this.state.filteredVenues).map((currentLocation, index) =>
                         <li key={index} onClick={() => {this.highlightMarker(currentLocation)}}>

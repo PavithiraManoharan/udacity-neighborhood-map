@@ -66,19 +66,10 @@ header .main-heading h1 {
 }
 
 #filter {
-  width: 79%;
+  width: 90%;
   height: 25px;
   margin: 0;
   padding: 0 10px;
-}
-
-#close-sidebar-menu {
-  float: right;
-  background: 0;
-  border: 0;
-  text-align: right;
-  padding: 7px 5px;
-  font-size: 1em;
 }
 
 .listPlaces {
@@ -167,10 +158,6 @@ code {
 
   .listPlaces {
     padding: 0 5px;
-  }
-
-  #close-sidebar-menu {
-    padding-right: 25px;
   }
 
   #map {
