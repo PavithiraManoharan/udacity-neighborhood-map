@@ -62,7 +62,7 @@ class App extends Component {
           venues: []
         }, this.handleFailLoadMap())
       })
-  } 
+  }
 
 
   // This function takes in a COLOR, and then creates a new marker
@@ -117,7 +117,7 @@ class App extends Component {
 
       //Set default styled icon for the markers
       marker.setIcon(defaultIcon)
-      
+
       marker.addListener('click', function() {
         //Set content of the infowindow
         infowindow.setContent(contentString)
@@ -179,15 +179,15 @@ class App extends Component {
     return (
       <div className="application">
         <header id="appHeader" className={this.state.isSidebarOpen ? "open" : "closed"}>
-          <button id="sidebar-menu-icon" onClick={this.toggleSidebar} aria-label="Open Menu">
+          <button title="Toggle Menu" id="sidebar-menu-icon" onClick={this.toggleSidebar} aria-label="Toggle Menu">
               <i className="fas fa-bars"></i>
           </button>
           <div className="main-heading">
-            <h1>Museums in Hafencity - Hamburg</h1>
+            <h1>Popular museums in Hamburg</h1>
           </div>
         </header>
         {
-          this.state.venues && this.state.venues.length > 0 && 
+          this.state.venues && this.state.venues.length > 0 &&
           <FilterSection isSidebarOpen={this.state.isSidebarOpen} toggleSidebar={this.toggleSidebar} markers={this.markers} venues={this.state.venues} />
         }
         <main id="appMain" className={this.state.isSidebarOpen ? "open":"closed"}>
@@ -198,5 +198,5 @@ class App extends Component {
     );
   }
 }
- 
+
 export default App;

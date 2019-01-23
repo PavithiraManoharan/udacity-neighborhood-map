@@ -69,6 +69,7 @@ header .main-heading h1 {
   width: 79%;
   height: 25px;
   margin: 0;
+  padding: 0 10px;
 }
 
 #close-sidebar-menu {
@@ -100,7 +101,7 @@ header .main-heading h1 {
 
 .listPlaces li button:hover {
   cursor: pointer;
-  color: #ff0000; 
+  color: #ff0000;
 }
 
 
@@ -164,6 +165,14 @@ code {
     height: 0;
   }
 
+  .listPlaces {
+    padding: 0 5px;
+  }
+
+  #close-sidebar-menu {
+    padding-right: 25px;
+  }
+
   #map {
     height: 90vh;
   }
@@ -174,5 +183,4 @@ code {
     height: 30vh;
     transition: all 0.3s ease;
   }
-
 }
