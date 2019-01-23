@@ -16,6 +16,11 @@ class FilterSection extends Component {
         this.setState({filteredVenues: this.props.venues})
     }
 
+    highlightMarker = (currentLocation) => {
+        let marker = this.props.markers.filter(m => m.id === currentLocation.venue.id)[0]
+        window.google.maps.event.trigger(marker, 'click')
+    }
+
     filterVenues(query) {
         let filteredVenues = (this.props.venues).filter(eachPlace => eachPlace.venue.name.toLowerCase().includes(query.toLowerCase()))
         this.props.markers.forEach(marker => {
@@ -30,10 +35,10 @@ class FilterSection extends Component {
     render() {
         return( 
             <div className="sidebar">
-                <input placeorder="Filter content" value= {this.state.query} onChange={(e) => { this.filterVenues(e.target.value) }}/>
+                <input placeholder="Filter content" value= {this.state.query} onChange={(e) => { this.filterVenues(e.target.value) }}/>
                 <ol>
                     {this.state.filteredVenues && (this.state.filteredVenues).map((currentLocation, index) =>
-                        <li key={index}>{currentLocation.venue.name}</li>
+                        <li key={index} onClick={() => {this.highlightMarker(currentLocation)}}>{currentLocation.venue.name}</li>
                     )}
                 </ol>        
             </div>
