@@ -11,8 +11,8 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.getVenues()
     this.markers = []
+    this.getVenues()
   }
 
 
@@ -48,6 +48,7 @@ class App extends Component {
       section: "museum",
       categoryId: "4bf58dd8d48988d181941735",
       ll:"53.55,10",
+      radius: "2000",
       v: "20180323"
     }
 
@@ -168,10 +169,12 @@ class App extends Component {
         <header>
           <Header/>
         </header>
-        <FilterSection markers={this.markers} venues={this.state.venues} />
+        {
+          this.state.venues && this.state.venues.length > 0 && <FilterSection markers={this.markers} venues={this.state.venues} />
+        }
         <main>
           <div id="map"></div>
-          <div id="errorDisplay" style={{display: "none"}}>Hey sorry there was an error</div>
+          <div id="errorDisplay" style={{display: "none"}}>Sorry, Google Maps was unable to load at this time :(</div>
         </main>
       </div>
     );

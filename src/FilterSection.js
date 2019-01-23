@@ -19,12 +19,16 @@ class FilterSection extends Component {
         })
         this.setState({ query })
     }
-
  
     render() {
         return( 
             <div className="sidebar">
                 <input value= {this.state.query} onChange={(e) => { this.filterVenues(e.target.value) }}/>
+                <ol>
+                    {this.props.venues && (this.props.venues).map((currentLocation) =>
+                            <li key={currentLocation.venue.id}>{currentLocation.venue.name}</li>
+                    )}
+                </ol>        
             </div>
         )
     }
