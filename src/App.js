@@ -191,7 +191,7 @@ class App extends Component {
           <button title="Toggle Menu" id="sidebar-menu-icon" onClick={this.toggleSidebar} aria-label="Toggle Menu">
               <i className="fas fa-bars"></i>
           </button>
-          <div className="main-heading">
+          <div className="main-heading" aria-label="Main Heading">
             <h1>Popular museums in Hamburg</h1>
           </div>
         </header>
@@ -200,7 +200,7 @@ class App extends Component {
           <FilterSection isSidebarOpen={this.state.isSidebarOpen} toggleSidebar={this.toggleSidebar} markers={this.markers} venues={this.state.venues} />
         }
         <main id="appMain" className={this.state.isSidebarOpen ? "open":"closed"}>
-          <div id="errorDisplay" style={{display: "none"}}>Sorry, Google Maps was unable to load at this time :(</div>
+          <div id="errorDisplay" style={{display: "none"}} role="alert">Sorry, Google Maps was unable to load at this time :(</div>
           <div id="map" role="application" aria-label="map"></div>
         </main>
       </div>

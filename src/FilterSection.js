@@ -42,9 +42,9 @@ class FilterSection extends Component {
 
     render() {
         return(
-            <nav id="canvas-menu" className={"sidebar " + (this.props.isSidebarOpen ? 'open' : 'closed')}>
+            <nav name="Filter Menu" id="canvas-menu" className={"sidebar " + (this.props.isSidebarOpen ? 'open' : 'closed')}>
                 <input name="Filter venues" id="filter" type="text" placeholder="Filter places" value= {this.state.query} onChange={(e) => { this.filterVenues(e.target.value) }}/>
-                <ul className="listPlaces">
+                <ul className="listPlaces" name="List of Places">
                     {this.state.filteredVenues && (this.state.filteredVenues).map((currentLocation, index) =>
                         <li key={index} onClick={() => {this.highlightMarker(currentLocation)}}>
                             <button key={index} name={currentLocation.venue.name} title={currentLocation.venue.name}><i className="fas fa-landmark"></i>   {currentLocation.venue.name}</button>

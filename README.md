@@ -1,68 +1,63 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# FEND Udacity – Project 7 – Neighborhood Map React
 
-## Available Scripts
+## Introduction and features:
 
-In the project directory, you can run:
+The aim of this project to use all skills learned :sunglasses: in the Frontend Developer Nanodegree Program by Udacity to create a React application. The Neighborhood Map Application has the following features:
 
-### `npm start`
+1. Responsiveness :sparkles: – All the features of the application are easily usable across all hand-held devices like Mobiles, Tablets, Laptops, Desktops etc.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. Accessibility :sparkles: – Semantic HTML Tags are used, ARIA Attributes are included to explain the role of non-semantic elements, Keyboard accessibility is made easier with meaningful navigation across the application with the Tab Key.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+1. Offline-first :sparkles: – The addition of a Service Worker to the application makes at least some parts of it accessible when the user goes offline, thereby giving a static version of the information viewed and not displaying a blank page when the Internet access is temporarily or fully unavailable.
 
-### `npm test`
+1. React :sparkles: - React’s composition strategy to building web applications has been implemented in this project. Javascript’s ES6 Syntax and React’s robust framework have been utilized to create a scalable web application with minimum but effective code.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Project Description:
 
-### `npm run build`
+The Neighborhood Map Application shows a simple map of the neighborhood in Hamburg, and the museums that are popular in Hafencity. A click on the individual places shows a short info dialog with information from Foursquare API. A hamburger menu toggles a list of places that are shown in the map. This menu also has a filter feature where the user can type into an Input to filter the displayed list of places. The corresponding markers in the map will also be filtered and displayed.
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Installation instructions:
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+1. Clone the Repository or download and unpack the zip file in a folder.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Goto the terminal and change to the directory or folder where the project is located. 
 
-### `npm run eject`
+1. If you have not installed npm and node already, you can download and install them at https://nodejs.org/en/download/.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Development mode:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. After installing node and npm in the computer, run the following commands in order to run the application in the web browser at http://localhost:3000
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+`npm install`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+`npm start`
 
-## Learn More
+The `npm install` command is to install the project dependencies, like babel and other packages needed for the application to run successfully. This may take a while, based on what you already have in your system. 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The `npm start` command compiles and runs the application in development mode.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Since this is a React application created with the ‘Create React App’ command, the application launches itself in the web browser after compilation.
 
-### Code Splitting
+However, if it does not start automatically, then goto the web browser and navigate to http://localhost:3000 after successful compilation. The page will reload if you make edits. You will also see any lint errors in the console.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+### Production mode: 
 
-### Analyzing the Bundle Size
+1. Run the command `npm run build` for creating an optimized production build.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+1. You can serve it in a static server using `serve -s build`
 
-### Making a Progressive Web App
+1. The application will be served at http://localhost:5000 locally, and at http://127.0.1.1:5000 in your network.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+1. The above steps should be sufficient to run the application successfully. On the case of errors, feel free to create a pull request or report bugs in the respective sections of the project repository.
 
-### Advanced Configuration
+## Credits:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+I am thankful to all the people :pray: and external sources for providing amazing resources :clap: so that I could complete this project on time and to my best abilities. The following is a list of people and sources I would like to thank for the wonderful help in my project:
 
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+1. Google - for the [Google Maps API](https://developers.google.com/maps/documentation/javascript/tutorial)
+1. [Foursquare API](https://developer.foursquare.com/) - for the information about the venues used in this application
+1. https://gps-coordinates.org/ - to help find GPS co-ordinates for many places given the address
+1. Elharony's Tutorials - https://www.youtube.com/watch?v=_1RjbT5dIeM&list=PLgOB68PvvmWCGNn8UMTpcfQEiITzxEEA1&index=5
+1. Ryan’s Tutorial : https://www.youtube.com/watch?v=5J6fs_BlVC0&feature=youtu.be
+1. Doing an off-canvas Menu properly: https://www.w3schools.com/howto/howto_js_off-canvas.asp
+1. Conditionally setting class names based on state : https://stackoverflow.com/questions/30533171/react-js-conditionally-applying-class-attributes
