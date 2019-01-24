@@ -16,6 +16,8 @@ The aim of this project to use all skills learned :sunglasses: in the Frontend D
 
 The Neighborhood Map Application shows a simple map of the neighborhood in Hamburg, and the museums that are popular in Hafencity. A click on the individual places shows a short info dialog with information from Foursquare API. A hamburger menu toggles a list of places that are shown in the map. This menu also has a filter feature where the user can type into an Input to filter the displayed list of places. The corresponding markers in the map will also be filtered and displayed.
 
+![Screenshot of the Project](images/P7FEND.png)
+
 ## Installation instructions:
 
 1. Clone the Repository or download and unpack the zip file in a folder.
@@ -26,11 +28,11 @@ The Neighborhood Map Application shows a simple map of the neighborhood in Hambu
 
 ### Development mode:
 
-1. After installing node and npm in the computer, run the following commands in order to run the application in the web browser at http://localhost:3000
+After installing node and npm in the computer, run the following commands in order to run the application in the web browser at http://localhost:3000
 
-`npm install`
+1. `npm install`
 
-`npm start`
+1. `npm start`
 
 The `npm install` command is to install the project dependencies, like babel and other packages needed for the application to run successfully. This may take a while, based on what you already have in your system. 
 
