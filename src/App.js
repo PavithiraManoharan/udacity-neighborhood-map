@@ -7,7 +7,8 @@ class App extends Component {
 
   state = {
     venues: [],
-    isSidebarOpen: false
+    isSidebarOpen: false,
+    isMapRendered: true
   }
 
   /**
@@ -29,6 +30,8 @@ class App extends Component {
     script.src = url
     script.async = true
     script.defer = true
+    // set state of isMapRendered to false
+    script.onerror = this.setState({ isMapRendered: false })
     index.parentNode.insertBefore(script, index)
   }
 
@@ -41,7 +44,7 @@ class App extends Component {
   }
 
   /**
-   * Fallback method if Google Maps was not able to load
+   * Fallback method if Foursquare API was not able to load
    */
   handleFailLoadMap = () => {
     document.getElementById("errorDisplay").style.display = "block"
@@ -156,6 +159,8 @@ class App extends Component {
 
   //Display a map with markers and their infowindows
   initMap = () => {
+    //If we are here, it means the request gave a successful response, so we set isMapRenderd to true
+    this.setState({ isMapRendered: true })
     const map = new window.google.maps.Map(document.getElementById('map'), {
       center: {lat: 53.55, lng: 10},
       zoom: 14,
@@ -200,8 +205,13 @@ class App extends Component {
           <FilterSection isSidebarOpen={this.state.isSidebarOpen} toggleSidebar={this.toggleSidebar} markers={this.markers} venues={this.state.venues} />
         }
         <main id="appMain" className={this.state.isSidebarOpen ? "open":"closed"}>
-          <div id="errorDisplay" style={{display: "none"}} role="alert">Sorry, Google Maps was unable to load at this time :(</div>
-          <div id="map" role="application" aria-label="map"></div>
+          <div id="errorDisplay" className="errorDisplay" style={{display: "none"}} role="alert">Sorry, we were not able to display the requested information at this time.</div>
+          { 
+            // If the state of isMapRendered is true, map is rendered, otherwise an error message is displayed
+            this.state.isMapRendered ? 
+              <div id="map" role="application" aria-label="map"></div> : 
+              <div className="errorDisplay" role="alert">Sorry Google Maps was unable to load at this time :/</div>
+          }
         </main>
       </div>
     );

@@ -62,4 +62,5 @@ I am thankful to all the people :pray: and external sources for providing amazin
 1. Elharony's Tutorials - https://www.youtube.com/watch?v=_1RjbT5dIeM&list=PLgOB68PvvmWCGNn8UMTpcfQEiITzxEEA1&index=5
 1. Ryan’s Tutorial : https://www.youtube.com/watch?v=5J6fs_BlVC0&feature=youtu.be
 1. Doing an off-canvas Menu properly: https://www.w3schools.com/howto/howto_js_off-canvas.asp
-1. Conditionally setting class names based on state : https://stackoverflow.com/questions/30533171/react-js-conditionally-applying-class-attributes
+1. Conditionally setting class names based on state : https://stackoverflow.com/questions/30533171/react-js-conditionally-applying-class-
+1. After the review, a helpful pointer to handle failure of google maps request : https://www.w3schools.com/jsref/event_onerror.asp

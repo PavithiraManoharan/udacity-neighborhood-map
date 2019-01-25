@@ -171,3 +171,11 @@ code {
     transition: all 0.3s ease;
   }
 }
+
+.errorDisplay {
+  padding: 20px;
+  margin: 15px;
+  border: 1px solid #a10404e8;
+  background-color: #e221218d;
+  border-radius: 4px;
+}
